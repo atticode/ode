@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{partial "sidebar.html" . }}
+<div class="single main main-offset">
+  <div class="single--box">
+    <div class="single--head">
+      <h1 class="single--title">{{ .Title }}</h1>
+      <aside class="single--meta">
+        <section>
+          <span class="meta--date"> {{ .Date.Format "2006-01-02 15:04 Monday" }} </span>
+          <span class="meta--wordcount">字数: {{ .WordCount }}</span>
+        </section>
+        <div class="single--tags">
+          {{ with .Params.tags }}
+            <ul class="list-unstyled">
+              <li class="single--tagitem list-unstyled text-italic">标签: </li>
+              {{ range . }}
+              <li class="single--tagitem list-unstyled">
+                <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      </aside>
+    </div>
+    <div>
+      <article class="single--content">
+        {{ .Content }}
+      </article>
+    </div>
+    <nav class="single--nav">
+    <div>
+      {{ with .PrevInSection }}
+      <span>上一篇:</span>
+      <a href="{{.Permalink}}"> {{.Title}}</a>
+      {{ end }}
+    </div>
+    <div>
+      {{ with .NextInSection }}
+      <span>下一篇:</span>
+      <a href="{{.Permalink}}"> {{.Title}}</a>
+      {{ end }}
+    </div>
+    </nav>
+  </div>
+  <div class="table-of-contents">
+    {{ .TableOfContents }}
+  </div>
+</div>
+{{ end }}

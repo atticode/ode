@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+{{ partial "sidebar.html" . }}
+
+<div class="section main main-offset">
+  <!-- Section Content -->
+  <article class="section--box">
+    <h1 class="section--title">{{.Title}}</h1>
+    <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+    <div class="section--content">
+      {{.Content}}
+    </div>
+  </article>
+  <!-- Summary -->
+  <div class="summary--box">
+      <!-- Ranges through content/<section>/*.md By Weight -->
+      {{ range first 10 .Data.Pages.ByWeight }}
+         {{ .Render "summary" }}
+      {{ end }}
+  </div>
+  <!-- All List -->
+  <div class="section--list">
+    <h3 class="section--list--title">全部列表</h3>
+    <!-- Groups content by month according to the "date" field in front matter -->
+    {{ range .Data.Pages.GroupByDate "2006-01" }}
+    <h4 class="section--list--subtitle">{{ .Key }}</h4>
+    <ul class="list-unstyled">
+      {{ range .Pages }}
+      <li class="section--list--item list-unstyled">
+        <a href="{{ .Permalink }}" title="{{.Title}}">{{ .Title }}</a>
+        <div class="date">{{ .Date.Format "2006.01.02 Monday" }}</div>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

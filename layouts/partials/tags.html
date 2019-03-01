@@ -1,0 +1,12 @@
+<!-- Tags -->
+<div class="tags--box">
+  <h2 class="tags--title">标签</h2>
+  <ul class="tags--list list-unstyled">
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <li class="tags--item list-unstyled">
+     <a class="tags--name" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+      <span class="tags--number"> ({{ .Count }})</span>
+    </li>
+    {{ end }}
+  </ul>
+</div>

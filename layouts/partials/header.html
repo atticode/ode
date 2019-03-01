@@ -1,0 +1,33 @@
+<header class="header">
+  <!-- Logo -->
+  <h1 class="header--logobox">
+    <a class="header--logo" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+  </h1>
+  <!-- Nav -->
+  <nav id="nav" class="header--nav">
+    <ul class="nav--menu list-unstyled">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+        <li class="nav--item list-unstyled {{ if $currentPage.HasMenuCurrent "posts" . }}nav--item-actived{{ end }}">
+          <a href="#">
+            <span>{{ .Name }}</span>
+          </a>
+          <ul class="subnav--menu">
+            {{ range .Children }}
+            <li class="subnav--item list-unstyled {{ if $currentPage.IsMenuCurrent "main" . }}subnav--item-actived{{ end }}">
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+          </ul>
+        {{else}}
+        <li class="nav--item list-unstyled {{ if $currentPage.IsMenuCurrent "main" . }}nav--item-actived{{ end }}">
+          <a href="{{.URL}}">{{ .Name }}</a>
+        {{end}}
+      {{end}}
+    </ul>
+  </nav>
+  <!-- Mobile Btn -->
+  <div id="mobilenavBtn" class="header--mobilenav">
+    <span class="mobilenav--btn"></span>
+  </div>
+</header>

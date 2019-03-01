@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="lists">
+ <h1 class="lists--title">{{.Title}}</h1>
+  <ul class="list-unstyled">
+    <!-- Ranges through content/*.md -->
+    {{ range .Data.Pages }}
+    <li class="lists--item list-unstyled">
+      <span>{{.Date.Format "2006-01-02"}}</span>
+      <a href="{{.Permalink}}">{{.Title}}</a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

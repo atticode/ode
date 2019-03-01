@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>
+      {{ .Site.Title }} - {{ .Title }}
+    </title>
+    <link rel="shortcut icon " type="images/x-icon" href="{{ .Site.BaseURL }}favicon.png">
+    <link href="{{ .Site.BaseURL }}css/style.css" rel="stylesheet" >
+    <link href="{{ .Site.BaseURL }}css/syntax.css" rel="stylesheet" >
+  </head>
+  <body>
+    {{ partial "header.html" . }}
+    <div class="container">
+      {{ block "main" . }}
+      <!-- The part of the page that begins to differ between templates -->
+      {{ end }}
+    </div>
+    {{ partial "footer.html" . }}
+    <script src="{{ .Site.BaseURL }}js/index.js"></script>
+  </body>
+</html>

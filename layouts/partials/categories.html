@@ -1,0 +1,12 @@
+<!-- Categories -->
+<div class="categories--box">
+  <h2 class="categories--title">分类</h2>
+  <ul class="categories--list list-unstyled">
+    {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+    <li class="categories--item list-unstyled">
+      <a class="categories--name" href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+      <span class="categories--number"> ({{ .Count }})</span>
+    </li>
+    {{ end }}
+  </ul>   
+</div>

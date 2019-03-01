@@ -1,0 +1,13 @@
+<article class="summary">
+  <div class="summary--head">
+    <h2><a class="summary--title" href="{{ .Permalink }}" title="{{.Title}}"> {{ .Title }}</a></h2>
+    <div class="summary--meta">
+      <span>{{ .Date.Format "2006-01-02 Monday" }}</span>
+      <span>字数 {{ .WordCount }}</span>
+    </div>
+  </div>
+  <div class="summary--content">{{ .Summary }}...</div>
+  <div class="read-more">
+    <a href='{{ .Permalink }}'>阅读全文</a>
+  </div>
+</article>

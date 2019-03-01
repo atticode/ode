@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="main">
+  <div class="alltaxonomies">
+    <h1 class="alltaxonomies--title">{{ .Title }}</h1>
+    <section>
+      <ul class="list-unstyled">
+        {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+        <li class="list-unstyled">
+          <a class="alltaxonomies--name" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{ $taxonomyname }}</a>
+          <ul class="list-unstyled">
+            {{ range $key, $value := $taxonomy }}
+            <li class="alltaxonomies--sublist list-unstyled"> {{ $key }} </li>
+            <ul class="list-unstyled">
+              {{ range $value.Pages }}
+              <li hugo-nav="{{ .RelPermalink}}" class="alltaxonomies--item list-unstyled">
+                <a href="{{ .Permalink}}"> {{ .LinkTitle }} </a>
+              </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+          </ul>
+        </li>
+      {{ end }}
+    </ul>
+    </section>
+  </div>
+</div>
+{{ end }}
